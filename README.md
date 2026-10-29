@@ -81,11 +81,3 @@ archivePrefix = {arXiv},
 ## Contact
 
 Please let us know your thoughts and questions at pystarburst99@gmail.com.
-
-```{toctree}
----
-maxdepth: 1
-caption: Introduction
----
-1_introduction/0_installation
-```
