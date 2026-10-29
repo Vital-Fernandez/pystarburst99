@@ -1,0 +1,65 @@
+cff-version: 1.2.0
+message: "If you use pyStarburst99 in your research, please cite the paper below."
+title: "pyStarburst99"
+type: software
+version: 0.1.0
+license: GPL-3.0-or-later
+abstract: "Python stellar population synthesis code based on Starburst99."
+keywords:
+  - astronomy
+  - stellar population synthesis
+  - starburst galaxies
+  - spectral energy distributions
+authors:
+  - given-names: Calum
+    family-names: Hawcroft
+    affiliation: Space Telescope Science Institute
+preferred-citation:
+  type: article
+  title: "pySTARBURST99: The Next Generation of STARBURST99"
+  authors:
+    - given-names: Calum
+      family-names: Hawcroft
+      affiliation: Space Telescope Science Institute
+    - given-names: Claus
+      family-names: Leitherer
+      affiliation: Space Telescope Science Institute
+    - given-names: Oskar
+      family-names: Aranguré
+      affiliation: Universidad Nacional Autónoma de México
+    - given-names: John
+      family-names: Chisholm
+      affiliation: The University of Texas at Austin
+    - given-names: Sylvia
+      family-names: Ekström
+      affiliation: Observatoire de Genève
+    - given-names: Sébastien
+      family-names: Martinet
+      affiliation: Université Libre de Bruxelles
+    - given-names: Lucimara P.
+      family-names: Martins
+      affiliation: Universidade Cidade de São Paulo
+    - given-names: Georges
+      family-names: Meynet
+      affiliation: Observatoire de Genève
+    - given-names: Christophe
+      family-names: Morisset
+      affiliation: Universidad Nacional Autónoma de México
+    - given-names: Andreas A. C.
+      family-names: Sander
+      affiliation: Universität Heidelberg
+    - given-names: Aida
+      family-names: Wofford
+      affiliation: Universidad Nacional Autónoma de México
+  journal: "The Astrophysical Journal Supplement Series"
+  volume: 280
+  issue: 1
+  start: 5
+  year: 2025
+  month: 9
+  doi: 10.3847/1538-4365/adddb6
+  url: "https://doi.org/10.3847/1538-4365/adddb6"
+  identifiers:
+    - type: other
+      value: "arXiv:2505.24841"
+      description: arXiv preprint

@@ -1,0 +1,225 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pyStarburst99: stellar population synthesis in Python &mdash; pyStarburst99 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="1_introduction/0_installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            pyStarburst99
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_introduction/0_installation.html">Installation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">pyStarburst99</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">pyStarburst99: stellar population synthesis in Python</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="pystarburst99-stellar-population-synthesis-in-python">
+<h1>pyStarburst99: stellar population synthesis in Python<a class="headerlink" href="#pystarburst99-stellar-population-synthesis-in-python" title="Link to this heading"></a></h1>
+<p>pyStarburst99 is a Python translation and update of the Starburst99 Fortran code. It predicts the integrated properties
+of star-forming galaxies from evolutionary tracks and stellar spectral libraries.</p>
+<section id="key-features">
+<h2>Key features<a class="headerlink" href="#key-features" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Instantaneous burst (ISF) and continuous star formation (CSF) models.</p></li>
+<li><p>Seven metallicities, from the Milky Way centre (Z = 0.02) to Z = 0.</p></li>
+<li><p>GENEC (rotating and non-rotating) and MESA (Pauli+2026) evolutionary tracks, with stars up to 300–500 M<span class="math notranslate nohighlight">\(_\odot\)</span>.</p></li>
+<li><p>Fastwind, WMbasic and PoWR OB stellar libraries, plus Wolf-Rayet and low-mass star spectra.</p></li>
+<li><p>Outputs: SEDs, high-resolution UV spectra, ionising fluxes, bolometric luminosity, wind power and momentum,
+hydrogen line equivalent widths, UV slopes, colours and supernova rates.</p></li>
+</ul>
+</section>
+<section id="quick-start">
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pystarburst99</span>
+
+<span class="c1"># Select model and output folder</span>
+<span class="n">metallicity</span> <span class="o">=</span> <span class="s1">'IZw18'</span>  <span class="c1">#MWC, MW, LMC, SMC, IZw18, XMP and Z0</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="s1">'./pyStarburst99_grids'</span>
+
+<span class="c1"># Create model compiler</span>
+<span class="n">sb99</span> <span class="o">=</span> <span class="n">pystarburst99</span><span class="o">.</span><span class="n">Compiler</span><span class="p">(</span><span class="n">output_folder</span><span class="o">=</span><span class="sa">f</span><span class="s1">'</span><span class="si">{</span><span class="n">output_folder</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">metallicity</span><span class="si">}</span><span class="s1">_grids'</span><span class="p">,</span>
+                              <span class="n">Z</span><span class="o">=</span><span class="n">metallicity</span><span class="p">,</span> <span class="n">track_choice</span><span class="o">=</span><span class="s1">'GENEC'</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                              <span class="n">SED_library</span><span class="o">=</span><span class="s1">'FW'</span><span class="p">,</span> <span class="n">spectra_library</span><span class="o">=</span><span class="s1">'WM'</span><span class="p">,</span> <span class="n">star_formation_option</span><span class="o">=</span><span class="s1">'ISF'</span><span class="p">,</span>
+                              <span class="n">log_age_start</span><span class="o">=</span><span class="mf">6.0</span><span class="p">,</span> <span class="n">log_age_end</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">log_age_step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">log_intervals</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                              <span class="n">beta_tools</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">overwrite_results</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Run the track computations and grid interpolation</span>
+<span class="n">pop</span> <span class="o">=</span> <span class="n">sb99</span><span class="o">.</span><span class="n">population_synthesis</span><span class="p">()</span>
+
+<span class="c1"># Save the results (previous folder content is deleted)</span>
+<span class="n">sb99</span><span class="o">.</span><span class="n">save_results</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The inputs not provided take their values from the <code class="docutils literal notranslate"><span class="pre">[default_settings]</span></code> section of <code class="docutils literal notranslate"><span class="pre">pystarburst99.toml</span></code>.</p>
+</section>
+<section id="model-options">
+<h2>Model options<a class="headerlink" href="#model-options" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Input</p></th>
+<th class="head"><p>Options</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Z</span></code></p></td>
+<td><p>MWC, MW, LMC, SMC, IZw18, XMP, Z0</p></td>
+<td><p>Metallicity: 0.02, 0.014, 0.006, 0.002, 0.0004, 1e-5 and 0</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">star_formation_option</span></code></p></td>
+<td><p>ISF, CSF</p></td>
+<td><p>Instantaneous burst (<code class="docutils literal notranslate"><span class="pre">M_total</span></code>) or continuous star formation (<code class="docutils literal notranslate"><span class="pre">SFR</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">track_choice</span></code></p></td>
+<td><p>GENEC, Pauli</p></td>
+<td><p>GENEC or MESA (Pauli+2026) evolutionary tracks</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rotation</span></code></p></td>
+<td><p>True, False</p></td>
+<td><p>GENEC tracks with 0.4 v<sub>crit</sub> rotation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SED_library</span></code></p></td>
+<td><p>FW, WM, PoWR</p></td>
+<td><p>Low-resolution OB library for the SEDs and ionising fluxes</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">spectra_library</span></code></p></td>
+<td><p>WM, PoWR</p></td>
+<td><p>High-resolution OB library for the UV line profiles</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IMF_exponents</span></code>, <code class="docutils literal notranslate"><span class="pre">IMF_mass_limits</span></code></p></td>
+<td><p>e.g. [1.3, 2.3], [0.1, 0.5, 120]</p></td>
+<td><p>Power-law IMF (Kroupa by default)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">run_speed_mode</span></code></p></td>
+<td><p>FAST, DEFAULT, HIGH_RES</p></td>
+<td><p>Resolution of the isochrone mass interpolation</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading"></a></h2>
+<p>If you found pyStarburst99 useful, please remember to cite
+<a class="reference external" href="https://doi.org/10.3847/1538-4365/adddb6">Hawcroft et al. (2025)</a> 📝:</p>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@ARTICLE</span><span class="p">{</span><span class="nl">pySB99_paper</span><span class="p">,</span>
+<span class="w">       </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{{Hawcroft}, C. and {Leitherer}, C. and {Arangur{\'e}}, O. and {Chisholm}, J. and</span>
+<span class="s">                 {Ekstr{\"o}m}, S. and {Martinet}, S. and {Martins}, L.~P. and {Meynet}, G. and</span>
+<span class="s">                 {Morisset}, C. and {Sander}, A.~A.~C. and {Wofford}, A.}</span><span class="p">,</span>
+<span class="w">        </span><span class="na">title</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">"{pySTARBURST99: The Next Generation of STARBURST99}"</span><span class="p">,</span>
+<span class="w">      </span><span class="na">journal</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{\apjs}</span><span class="p">,</span>
+<span class="w">         </span><span class="na">year</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="m">2025</span><span class="p">,</span>
+<span class="w">        </span><span class="na">month</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nv">sep</span><span class="p">,</span>
+<span class="w">       </span><span class="na">volume</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{280}</span><span class="p">,</span>
+<span class="w">       </span><span class="na">number</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{1}</span><span class="p">,</span>
+<span class="w">          </span><span class="na">eid</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{5}</span><span class="p">,</span>
+<span class="w">        </span><span class="na">pages</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{5}</span><span class="p">,</span>
+<span class="w">          </span><span class="na">doi</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{10.3847/1538-4365/adddb6}</span><span class="p">,</span>
+<span class="na">archivePrefix</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{arXiv}</span><span class="p">,</span>
+<span class="w">       </span><span class="na">eprint</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{2505.24841}</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="contact">
+<h2>Contact<a class="headerlink" href="#contact" title="Link to this heading"></a></h2>
+<p>Please let us know your thoughts and questions at pystarburst99&#64;gmail.com.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="1_introduction/0_installation.html">Installation</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="1_introduction/0_installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Calum Hawcroft.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

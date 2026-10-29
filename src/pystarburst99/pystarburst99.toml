@@ -1,0 +1,417 @@
+[metadata]
+name = 'pyStarburst99'
+version = "0.1.0"
+
+model_folder = 'core/pySB99_files'
+
+[metadata.metallicity]
+MWC = 0.02
+MW = 0.014
+LMC = 0.006
+SMC = 0.002
+IZw18 = 0.0004
+XMP = 0.00001
+values.Z0 = 0.0
+
+   # ---------------------------------------------------------------------------------------------------------------------
+[default_settings]
+star_formation_option = "ISF"               # ISF: instantaneous burst (uses M_total). CSF: continuous star formation (uses SFR)
+track_choice = "GENEC"                      # GENEC or Pauli (Pauli+26, rotating at ~100 km/s). Parsec likely coming soon
+rotation = false                                 # GENEC tracks with 0.4 v_critical rotation (true) or non-rotating (false)
+SED_library = "FW"                          # Low-resolution OB library: FW (Fastwind), WM (WMbasic) or PoWR
+spectra_library = "WM"                      # High-resolution OB library: WM (WMbasic) or PoWR (Potsdam). FW coming soon
+mass_loss_rate_option = "DEFAULT"           # PoWR high-resolution Mdot: DEFAULT (Vd3). HIGH, MODERATE and LOW not implemented yet
+input_imf_option = false                    # true: read a stochastically sampled IMF (list of stellar masses) from stochastic_imf_file
+stochastic_imf_file = "chabrier_stars.npy"
+
+# Outputs (results are always saved)
+plot_results_check = true                   # Plot the results and save the figures in the output folder
+output_age = 2.0                            # Myr, age of the example SED and high-resolution spectrum which are saved and plotted
+
+# Grid parameters
+M_total = 1.0e6                             # Msol, total mass of the burst (ISF)
+SFR = 1.0                                   # Msol/yr, star formation rate (CSF)
+IMF_exponents = [1.3, 2.3]
+IMF_mass_limits = [0.1, 0.5, 120.0]
+maximum_SN_mass = 120.0                     # Msol, maximum stellar initial mass accounted for as going supernova
+time_step_length = 0.1e6                    # yr
+run_speed_mode = "DEFAULT"                  # Isochrone mass interpolation: FAST (~20 s, tests and models < 10 Myr), DEFAULT (~60 s) or HIGH_RES
+
+#log_intervals = false
+#log_age_start = -inf                        # age 0 yr (only valid for linear intervals)
+#log_age_end = 7.69897                       # 50 Myr
+#log_age_step = 5.0                          # log10(step/yr): 0.1 Myr
+
+# ---------------------------------------------------------------------------------------------------------------------
+[MWC]
+folder = "Z020_pySB99_files"
+Z_value = 0.02
+
+[MWC.tracks.GENEC_v40]
+file = "Z020v40_VMS_tracks.npy"
+mass_grid = [300.0, 200.0, 150.0, 120.0, 85.0, 60.0, 40.0, 32.0, 25.0, 20.0, 15.0, 12.0, 9.0, 7.0, 5.0, 4.0, 3.0, 2.5, 2.0, 1.7, 1.5, 1.35, 1.25, 1.1, 1.0, 0.9, 0.8]
+max_mass = 300.0
+minimum_wr_mass = 20.0
+
+[MWC.tracks.GENEC_v00]
+file = "Z020v00_VMS_tracks.npy"
+mass_grid = [300.0, 200.0, 150.0, 120.0, 85.0, 60.0, 40.0, 32.0, 25.0, 20.0, 15.0, 12.0, 9.0, 7.0, 5.0, 4.0, 3.0, 2.5, 2.0, 1.7, 1.5, 1.35, 1.25, 1.1, 1.0, 0.9, 0.8]
+max_mass = 300.0
+minimum_wr_mass = 20.0
+
+[MWC.SED]
+WM = "WMbasic_OB_Z020_test.dat"
+FW = "FW_SB_grid_Z020_VMS.txt"
+PoWR = "POWR_grid_ob_vd3_Z014.txt"
+
+[MWC.hires_WM]
+wave_grid = "hires_wave_grid.npy"
+line_flux = "ifa_line_p00_reform.npy"
+cont_flux = "ifa_cont_p00_reform.npy"
+params = "spec_params_ifa_line_p00.npy"
+
+[MWC.hires_PoWR.DEFAULT]
+teffs = "mw_ob_vd3_hires_teffs.txt"
+loggs = "mw_ob_vd3_hires_loggs.txt"
+logls = "mw_ob_vd3_hires_logls.txt"
+calib = "mw_ob_vd3_hires_uv_calib.txt"
+norm = "mw_ob_vd3_hires_uv_norm.txt"
+
+[MWC.lowmass]
+params = "spec_params_lowmassp00.npy"
+flux = "lcb97_p00_reform.npy"
+
+[MWC.WR]
+WN_params_cmfgen = "WN_spec_params_cmfgen_Z020.npy"
+WN_spectra_cmfgen = "WN_spectra_cmfgen_Z020.npy"
+WC_params_cmfgen = "WC_spec_params_cmfgen_Z020.npy"
+WC_spectra_cmfgen = "WC_spectra_cmfgen_Z020.npy"
+WN_params_powr = "WN_spec_params_powr_Z020.npy"
+WN_spectra_powr = "WN_spectra_powr_Z020.npy"
+WC_params_powr = "WC_spec_params_powr_Z020.npy"
+WC_spectra_powr = "WC_spectra_powr_Z020.npy"
+
+# ---------------------------------------------------------------------------------------------------------------------
+[MW]
+folder = "Z014_pySB99_files"
+Z_value = 0.014
+
+[MW.tracks.Pauli]
+file = "Z014v00_VMS_tracks_pauli_woutLBVmdot.npy"
+# file = "Z014v00_VMS_tracks_pauli_withLBVmdot.npy"
+mass_grid = [316.0, 282.0, 251.0, 223.0, 200.0, 178.0, 158.0, 141.0, 126.0, 112.0, 100.0, 89.0, 80.0, 70.0, 63.0, 56.0, 50.0, 44.0, 40.0, 35.0, 32.0, 28.0, 25.0, 22.0, 20.0, 18.0, 16.0, 14.0, 12.0, 11.0, 10.0, 9.0, 7.0, 5.0, 4.0, 3.0, 2.5, 2.0, 1.7, 1.5, 1.35, 1.25, 1.1, 1.0, 0.9, 0.8]
+max_mass = 315.0
+minimum_wr_mass = 25.0
+
+[MW.tracks.GENEC_v40]
+file = "Z014v40_VMS_tracks.npy"
+mass_grid = [300.0, 250.0, 180.0, 120.0, 85.0, 60.0, 40.0, 32.0, 25.0, 20.0, 15.0, 12.0, 9.0, 7.0, 5.0, 4.0, 3.0, 2.5, 2.0, 1.7, 1.5, 1.35, 1.25, 1.1, 1.0, 0.9, 0.8]
+max_mass = 300.0
+minimum_wr_mass = 20.0
+
+[MW.tracks.GENEC_v00]
+file = "Z014v00_VMS_tracks.npy"
+mass_grid = [500.0, 300.0, 200.0, 150.0, 120.0, 85.0, 60.0, 50.0, 40.0, 32.0, 25.0, 23.0, 22.0, 20.0, 17.0, 15.0, 14.0, 12.0, 11.75, 11.5, 10.0, 9.0, 8.0, 7.0, 5.0, 4.0, 3.0, 2.5, 2.0, 1.7, 1.5, 1.35, 1.25, 1.1, 1.0, 0.9, 0.8]
+max_mass = 500.0
+minimum_wr_mass = 25.0
+
+[MW.SED]
+WM = "WMbasic_OB_Z020_test.dat"
+FW = "FW_SB_grid_Z014.txt"
+FW_VMS = "FW_SB_grid_Z014_VMS.txt"
+PoWR = "POWR_grid_ob_vd3_Z014.txt"
+
+[MW.hires_WM]
+wave_grid = "hires_wave_grid.npy"
+line_flux = "ifa_line_p00_reform.npy"
+cont_flux = "ifa_cont_p00_reform.npy"
+params = "spec_params_ifa_line_p00.npy"
+
+[MW.hires_PoWR.DEFAULT]
+teffs = "mw_ob_vd3_hires_teffs.txt"
+loggs = "mw_ob_vd3_hires_loggs.txt"
+logls = "mw_ob_vd3_hires_logls.txt"
+calib = "mw_ob_vd3_hires_uv_calib.txt"
+norm = "mw_ob_vd3_hires_uv_norm.txt"
+
+[MW.lowmass]
+params = "spec_params_lowmassp00.npy"
+flux = "lcb97_p00_reform.npy"
+
+[MW.WR]
+WN_params_cmfgen = "WN_spec_params_cmfgen_Z020.npy"
+WN_spectra_cmfgen = "WN_spectra_cmfgen_Z020.npy"
+WC_params_cmfgen = "WC_spec_params_cmfgen_Z020.npy"
+WC_spectra_cmfgen = "WC_spectra_cmfgen_Z020.npy"
+WN_params_powr = "WN_spec_params_powr_Z020.npy"
+WN_spectra_powr = "WN_spectra_powr_Z020.npy"
+WC_params_powr = "WC_spec_params_powr_Z020.npy"
+WC_spectra_powr = "WC_spectra_powr_Z020.npy"
+
+# ---------------------------------------------------------------------------------------------------------------------
+[LMC]
+folder = "Z006_pySB99_files"
+Z_value = 0.006
+
+[LMC.tracks.Pauli]
+file = "Z006v00_VMS_tracks_pauli_woutLBVmdot.npy"
+# file = "Z006v00_VMS_tracks_pauli_withLBVmdot.npy"
+mass_grid = [400.0, 355.0, 316.0, 282.0, 251.0, 223.0, 200.0, 178.0, 158.0, 141.0, 126.0, 112.0, 100.0, 89.0, 80.0, 70.0, 63.0, 56.0, 50.0, 44.0, 40.0, 35.0, 32.0, 28.0, 25.0, 22.0, 20.0, 18.0, 16.0, 14.0, 12.0, 11.0, 10.0, 9.0, 7.0, 5.0, 4.0, 3.0, 2.5, 2.0, 1.7, 1.5, 1.35, 1.25, 1.1, 1.0, 0.9, 0.8]
+max_mass = 400.0
+minimum_wr_mass = 25.0
+
+[LMC.tracks.GENEC_v40]
+file = "Z006v40_VMS_tracks.npy"
+mass_grid = [300.0, 250.0, 180.0, 120.0, 85.0, 60.0, 40.0, 32.0, 25.0, 20.0, 15.0, 12.0, 9.0, 7.0, 5.0, 4.0, 3.0, 2.5, 2.0, 1.7, 1.5, 1.35, 1.25, 1.1, 1.0, 0.9, 0.8]
+max_mass = 300.0
+minimum_wr_mass = 25.0
+
+[LMC.tracks.GENEC_v00]
+file = "Z006v00_VMS_tracks.npy"
+mass_grid = [300.0, 250.0, 180.0, 120.0, 85.0, 60.0, 40.0, 32.0, 25.0, 20.0, 15.0, 12.0, 9.0, 7.0, 5.0, 4.0, 3.0, 2.5, 2.0, 1.7, 1.5, 1.35, 1.25, 1.1, 1.0, 0.9, 0.8]
+max_mass = 300.0
+minimum_wr_mass = 25.0
+
+[LMC.SED]
+WM = "WMbasic_OB_Z008_tst.dat"
+FW = "FW_SB_grid_Z006.txt"
+FW_VMS = "FW_SB_grid_Z006_VMS.txt"  # VMS with a few more converged models (fixed Q)
+PoWR = "POWR_grid_ob_vd3_Z006.txt"
+
+[LMC.hires_WM]
+wave_grid = "hires_wave_grid.npy"
+line_flux = "ifa_line_m04_reform.npy"
+cont_flux = "ifa_cont_m04_reform.npy"
+params = "spec_params_ifa_line_m04.npy"
+
+[LMC.hires_PoWR.DEFAULT]
+teffs = "lmc_ob_vd3_hires_teffs.txt"
+loggs = "lmc_ob_vd3_hires_loggs.txt"
+logls = "lmc_ob_vd3_hires_logls.txt"
+calib = "lmc_ob_vd3_hires_uv_calib.txt"
+norm = "lmc_ob_vd3_hires_uv_norm.txt"
+
+[LMC.lowmass]
+params = "spec_params_lowmassm04.npy"
+flux = "lcb97_m04_reform.npy"
+
+[LMC.WR]
+WN_params_cmfgen = "WN_spec_params_cmfgen_Z008.npy"
+WN_spectra_cmfgen = "WN_spectra_cmfgen_Z008.npy"
+WC_params_cmfgen = "WC_spec_params_cmfgen_Z008.npy"
+WC_spectra_cmfgen = "WC_spectra_cmfgen_Z008.npy"
+WN_params_powr = "WN_spec_params_powr_Z008.npy"
+WN_spectra_powr = "WN_spectra_powr_Z008.npy"
+WC_params_powr = "WC_spec_params_powr_Z008.npy"
+WC_spectra_powr = "WC_spectra_powr_Z008.npy"
+
+# ---------------------------------------------------------------------------------------------------------------------
+[SMC]
+folder = "Z002_pySB99_files"
+Z_value = 0.002
+
+[SMC.tracks.Pauli]
+file = "Z002v00_VMS_tracks_pauli_woutLBVmdot.npy"
+# file = "Z002v00_VMS_tracks_pauli_withLBVmdot.npy"
+mass_grid = [400.0, 355.0, 316.0, 282.0, 251.0, 223.0, 200.0, 178.0, 158.0, 141.0, 126.0, 112.0, 100.0, 89.0, 80.0, 70.0, 63.0, 56.0, 50.0, 44.0, 40.0, 35.0, 32.0, 28.0, 25.0, 22.0, 20.0, 18.0, 16.0, 14.0, 12.0, 11.0, 10.0, 9.0, 7.0, 5.0, 4.0, 3.0, 2.5, 2.0, 1.7, 1.5, 1.35, 1.25, 1.1, 1.0, 0.9, 0.8]
+max_mass = 400.0
+minimum_wr_mass = 84.0
+
+[SMC.tracks.GENEC_v40]
+file = "Z002v40_tracks.npy"
+mass_grid = [120.0, 85.0, 60.0, 40.0, 32.0, 25.0, 20.0, 15.0, 12.0, 9.0, 7.0, 5.0, 4.0, 3.0, 2.5, 2.0, 1.7, 1.5, 1.35, 1.25, 1.1, 1.0, 0.9, 0.8]
+max_mass = 120.0
+minimum_wr_mass = 84.0
+
+[SMC.tracks.GENEC_v00]
+file = "Z002v00_tracks.npy"
+mass_grid = [120.0, 85.0, 60.0, 40.0, 32.0, 25.0, 20.0, 15.0, 12.0, 9.0, 7.0, 5.0, 4.0, 3.0, 2.5, 2.0, 1.7, 1.5, 1.35, 1.25, 1.1, 1.0, 0.9, 0.8]
+max_mass = 120.0
+minimum_wr_mass = 84.0
+
+[SMC.SED]
+WM = "WMbasic_OB_Z004_tst.dat"
+FW = "FW_SB_grid_Z002.txt"
+PoWR = "POWR_grid_ob_vd3_Z002.txt"
+
+[SMC.hires_WM]
+wave_grid = "hires_wave_grid.npy"
+line_flux = "ifa_line_m07_reform_new.npy"
+cont_flux = "ifa_cont_m07_reform_new.npy"
+params = "spec_params_ifa_line_m07_new.npy"
+
+[SMC.hires_PoWR.DEFAULT]
+teffs = "smc_ob_vd3_hires_teffs.txt"
+loggs = "smc_ob_vd3_hires_loggs.txt"
+logls = "smc_ob_vd3_hires_logls.txt"
+calib = "smc_ob_vd3_hires_uv_calib.txt"
+norm = "smc_ob_vd3_hires_uv_norm.txt"
+
+[SMC.lowmass]
+params = "spec_params_lowmassm07.npy"
+flux = "lcb97_m07_reform.npy"
+
+[SMC.WR]
+WN_params_cmfgen = "WN_spec_params_cmfgen_Z004.npy"
+WN_spectra_cmfgen = "WN_spectra_cmfgen_Z004.npy"
+WC_params_cmfgen = "WC_spec_params_cmfgen_Z004.npy"
+WC_spectra_cmfgen = "WC_spectra_cmfgen_Z004.npy"
+WN_params_powr = "WN_spec_params_powr_Z004.npy"
+WN_spectra_powr = "WN_spectra_powr_Z004.npy"
+WC_params_powr = "WC_spec_params_powr_Z004.npy"
+WC_spectra_powr = "WC_spectra_powr_Z004.npy"
+
+# ---------------------------------------------------------------------------------------------------------------------
+[IZw18]
+folder = "Z0004_pySB99_files"
+Z_value = 0.0004
+
+[IZw18.tracks.Pauli]
+file = "Z0004v00_VMS_tracks_pauli_woutLBVmdot.npy"
+# file = "Z0004v00_VMS_tracks_pauli_withLBVmdot.npy"
+mass_grid = [400.0, 355.0, 316.0, 282.0, 251.0, 223.0, 200.0, 178.0, 158.0, 141.0, 126.0, 112.0, 100.0, 89.0, 80.0, 70.0, 63.0, 56.0, 50.0, 44.0, 40.0, 35.0, 32.0, 28.0, 25.0, 22.0, 20.0, 18.0, 16.0, 14.0, 12.0, 11.0, 10.0, 9.0, 7.0, 5.0, 4.0, 3.0, 2.5, 2.0, 1.7]
+max_mass = 400.0
+minimum_wr_mass = 84.0
+
+[IZw18.tracks.GENEC_v40]
+file = "Z0004v40_tracks.npy"
+mass_grid = [120.0, 85.0, 60.0, 40.0, 32.0, 25.0, 20.0, 15.0, 12.0, 9.0, 7.0, 5.0, 4.0, 3.0, 2.5, 2.0, 1.7]
+max_mass = 120.0
+minimum_wr_mass = 84.0
+
+[IZw18.tracks.GENEC_v00]
+file = "Z0004v00_tracks.npy"
+mass_grid = [120.0, 85.0, 60.0, 40.0, 32.0, 25.0, 20.0, 15.0, 12.0, 9.0, 7.0, 5.0, 4.0, 3.0, 2.5, 2.0, 1.7]
+max_mass = 120.0
+minimum_wr_mass = 84.0
+
+[IZw18.SED]
+WM = "WMbasic_OB_Z001_tst.dat"
+FW = "FW_SB_grid_Z0004.txt"
+PoWR = "POWR_grid_ob_vd3_Z0004.txt"
+
+[IZw18.hires_WM]
+wave_grid = "hires_wave_grid.npy"
+line_flux = "ifa_line_m13_reform.npy"
+cont_flux = "ifa_cont_m13_reform.npy"
+params = "spec_params_ifa_line_m13.npy"
+
+[IZw18.hires_PoWR.DEFAULT]
+teffs = "subsmc_ob_vd3_hires_teffs.txt"
+loggs = "subsmc_ob_vd3_hires_loggs.txt"
+logls = "subsmc_ob_vd3_hires_logls.txt"
+calib = "subsmc_ob_vd3_hires_uv_calib.txt"
+norm = "subsmc_ob_vd3_hires_uv_norm.txt"
+
+[IZw18.lowmass]
+params = "spec_params_lowmassm13.npy"
+flux = "lcb97_m13_reform.npy"
+
+[IZw18.WR]
+WN_params_cmfgen = "WN_spec_params_cmfgen_Z001.npy"
+WN_spectra_cmfgen = "WN_spectra_cmfgen_Z001.npy"
+WC_params_cmfgen = "WC_spec_params_cmfgen_Z001.npy"
+WC_spectra_cmfgen = "WC_spectra_cmfgen_Z001.npy"
+WN_params_powr = "WN_spec_params_powr_Z001.npy"
+WN_spectra_powr = "WN_spectra_powr_Z001.npy"
+WC_params_powr = "WC_spec_params_powr_Z001.npy"
+WC_spectra_powr = "WC_spectra_powr_Z001.npy"
+
+# ---------------------------------------------------------------------------------------------------------------------
+[XMP]
+folder = "Z00001_pySB99_files"
+Z_value = 0.00001
+
+[XMP.tracks.GENEC_v40]
+file = "Z00001v40_tracks.npy"
+mass_grid = [500.0, 300.0, 200.0, 150.0, 120.0, 85.0, 60.0, 40.0, 30.0, 25.0, 20.0, 15.0, 12.0, 9.0, 7.0, 5.0, 4.0, 3.0, 2.5, 2.0, 1.7]
+max_mass = 500.0
+minimum_wr_mass = 84.0
+
+[XMP.tracks.GENEC_v00]
+file = "Z00001v00_tracks.npy"
+mass_grid = [500.0, 300.0, 200.0, 150.0, 120.0, 85.0, 60.0, 40.0, 30.0, 25.0, 20.0, 15.0, 12.0, 9.0, 7.0, 5.0, 4.0, 3.0, 2.5, 2.0, 1.7]
+max_mass = 500.0
+minimum_wr_mass = 84.0
+
+[XMP.SED]
+WM = "WMbasic_OB_Z001_tst.dat"
+FW = "FW_SB_grid_Z00001.txt"
+PoWR = "POWR_grid_ob_vd3_Z0004.txt"
+
+[XMP.hires_WM]
+wave_grid = "hires_wave_grid.npy"
+line_flux = "ifa_line_m13_reform.npy"
+cont_flux = "ifa_cont_m13_reform.npy"
+params = "spec_params_ifa_line_m13.npy"
+
+[XMP.hires_PoWR.DEFAULT]
+teffs = "subsmc_ob_vd3_hires_teffs.txt"
+loggs = "subsmc_ob_vd3_hires_loggs.txt"
+logls = "subsmc_ob_vd3_hires_logls.txt"
+calib = "subsmc_ob_vd3_hires_uv_calib.txt"
+norm = "subsmc_ob_vd3_hires_uv_norm.txt"
+
+[XMP.lowmass]
+params = "spec_params_lowmassm13.npy"
+flux = "lcb97_m13_reform.npy"
+
+[XMP.WR]
+WN_params_cmfgen = "WN_spec_params_cmfgen_Z001.npy"
+WN_spectra_cmfgen = "WN_spectra_cmfgen_Z001.npy"
+WC_params_cmfgen = "WC_spec_params_cmfgen_Z001.npy"
+WC_spectra_cmfgen = "WC_spectra_cmfgen_Z001.npy"
+WN_params_powr = "WN_spec_params_powr_Z001.npy"
+WN_spectra_powr = "WN_spectra_powr_Z001.npy"
+WC_params_powr = "WC_spec_params_powr_Z001.npy"
+WC_spectra_powr = "WC_spectra_powr_Z001.npy"
+
+# ---------------------------------------------------------------------------------------------------------------------
+[Z0]
+folder = "Z00_pySB99_files"
+Z_value = 0.0
+
+[Z0.tracks.GENEC_v40]
+file = "Z00v40_tracks.npy"
+mass_grid = [120.0, 85.0, 60.0, 40.0, 30.0, 20.0, 15.0, 12.0, 9.0, 7.0, 5.0, 4.0, 3.0, 2.5, 2.0, 1.7]
+max_mass = 120.0
+minimum_wr_mass = 84.0
+
+[Z0.tracks.GENEC_v00]
+file = "Z00v00_tracks.npy"
+mass_grid = [300.0, 250.0, 120.0, 85.0, 60.0, 40.0, 30.0, 20.0, 15.0, 12.0, 9.0, 7.0, 5.0, 4.0, 3.0, 2.5, 2.0, 1.7]
+max_mass = 300.0
+minimum_wr_mass = 84.0
+
+[Z0.SED]
+WM = "WMbasic_OB_Z001_tst.dat"
+FW = "FW_SB_grid_Z0.txt"
+FW_VMS = "FW_SB_grid_Z0_VMS.txt"
+PoWR = "POWR_grid_ob_vd3_Z0004.txt"
+
+[Z0.hires_WM]
+wave_grid = "hires_wave_grid.npy"
+line_flux = "ifa_line_m13_reform.npy"
+cont_flux = "ifa_cont_m13_reform.npy"
+params = "spec_params_ifa_line_m13.npy"
+
+[Z0.hires_PoWR.DEFAULT]
+teffs = "subsmc_ob_vd3_hires_teffs.txt"
+loggs = "subsmc_ob_vd3_hires_loggs.txt"
+logls = "subsmc_ob_vd3_hires_logls.txt"
+calib = "subsmc_ob_vd3_hires_uv_calib.txt"
+norm = "subsmc_ob_vd3_hires_uv_norm.txt"
+
+[Z0.lowmass]
+params = "spec_params_lowmassm13.npy"
+flux = "lcb97_m13_reform.npy"
+
+[Z0.WR]
+WN_params_cmfgen = "WN_spec_params_cmfgen_Z001.npy"
+WN_spectra_cmfgen = "WN_spectra_cmfgen_Z001.npy"
+WC_params_cmfgen = "WC_spec_params_cmfgen_Z001.npy"
+WC_spectra_cmfgen = "WC_spectra_cmfgen_Z001.npy"
+WN_params_powr = "WN_spec_params_powr_Z001.npy"
+WN_spectra_powr = "WN_spectra_powr_Z001.npy"
+WC_params_powr = "WC_spec_params_powr_Z001.npy"
+WC_spectra_powr = "WC_spectra_powr_Z001.npy"

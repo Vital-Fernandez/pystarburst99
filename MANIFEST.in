@@ -1,0 +1,7 @@
+# Configuration and model data
+include src/pyStarburst99/pystarburst99.toml
+recursive-include src/pyStarburst99/core/pySB99_files *
+
+# Exclude build and cache files
+global-exclude *.py[cod] __pycache__ .DS_Store
+prune tests/outputs

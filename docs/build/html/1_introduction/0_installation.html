@@ -1,0 +1,166 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; pyStarburst99 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="pyStarburst99: stellar population synthesis in Python" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            pyStarburst99
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#core-dependencies">Core dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optional-dependencies">Optional dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#updating-pystarburst99">Updating pyStarburst99</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uninstalling">Uninstalling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#for-developers">For developers</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pyStarburst99</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/1_introduction/0_installation.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="installation">
+<span id="installation-doc"></span><h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+<p>pyStarburst99 can be installed by cloning the <a class="reference external" href="https://github.com/CalumHawcroft/Starburst">GitHub repository</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/CalumHawcroft/Starburst.git
+<span class="nb">cd</span><span class="w"> </span>Starburst
+pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
+<p>To also install the optional dependencies:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">".[full]"</span>
+</pre></div>
+</div>
+<p>You can also run pyStarburst99 in your browser, with no installation, using this
+<a class="reference external" href="https://colab.research.google.com/drive/1MN4P8Q47jshh3bw2sEODb3eJDNxgAbLc?usp=sharing">Colab notebook</a>. The runtime
+is longer than with a local installation.</p>
+<section id="core-dependencies">
+<h2>Core dependencies<a class="headerlink" href="#core-dependencies" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://numpy.org/install/">Numpy</a> – Array operations</p></li>
+<li><p><a class="reference external" href="https://pandas.pydata.org/docs/getting_started/install.html">Pandas</a> – Reading the spectral libraries</p></li>
+<li><p><a class="reference external" href="https://scipy.org/beginner-install/">Scipy</a> – Interpolation and fitting</p></li>
+<li><p><a class="reference external" href="https://matplotlib.org/stable/users/installing/index.html">Matplotlib</a> – Plotting the results</p></li>
+</ul>
+</section>
+<section id="optional-dependencies">
+<h2>Optional dependencies<a class="headerlink" href="#optional-dependencies" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://tqdm.github.io/">tqdm</a> – Progress bars in the terminal and notebooks (a plain text bar is used without it)</p></li>
+</ul>
+</section>
+<section id="updating-pystarburst99">
+<h2>Updating pyStarburst99<a class="headerlink" href="#updating-pystarburst99" title="Link to this heading"></a></h2>
+<p>To upgrade to the latest version, pull the latest changes and reinstall:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull
+pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+<section id="uninstalling">
+<h2>Uninstalling<a class="headerlink" href="#uninstalling" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>uninstall<span class="w"> </span>pystarburst99
+</pre></div>
+</div>
+</section>
+<section id="for-developers">
+<h2>For developers<a class="headerlink" href="#for-developers" title="Link to this heading"></a></h2>
+<p>The following command installs the dependencies to compile the documentation and run the tests:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">".[docs,tests]"</span>
+</pre></div>
+</div>
+<p>pyStarburst99 has been tested with <strong>Python 3.12</strong>. See the <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> in the repository for the most up-to-date
+build and dependency information.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="pyStarburst99: stellar population synthesis in Python" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Calum Hawcroft.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

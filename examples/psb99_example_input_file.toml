@@ -1,0 +1,14 @@
+[inputs]
+Z = 'MW'
+output_folder = "/home/vital/Desktop/porsi/IZw18"
+track_choice = "GENEC"
+rotation = false
+SED_library = "FW"
+spectra_library = "WM"
+star_formation_option = "ISF"
+log_age_start = 6.0
+log_age_end = 8.0
+log_age_step = 0.1
+log_intervals = true
+beta_tools = true
+overwrite_results = true
